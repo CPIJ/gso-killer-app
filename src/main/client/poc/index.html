@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <script src="app.js"></script>
+    <title>Websocket Poc</title>
+</head>
+<body>
+
+<h1>Registreer</h1>
+
+<label>Username <input id="username" /></label>
+<br>
+<label>Email <input id="email" type="email"/></label>
+<br>
+<label>Password <input id="password" type="password"/></label>
+
+<br>
+<button id="submit" >Registreer</button>
+
+<h1>Alle Users</h1>
+
+<div id="all-users">
+
+</div>
+
+<h1>Alle peers</h1>
+
+<div id="all-peers">
+
+</div>
+
+<label for="content"></label><textarea id="content" rows="10" cols="80"></textarea>
+<br>
+
+<button id="allProjects" >Log all live projects</button>
+
+</body>
+</html>
