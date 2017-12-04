@@ -1,0 +1,26 @@
+:root {
+    --dark-primary    :  rgb(44, 44, 42); 
+    --default-primary :  rgb(65, 65, 62); 
+    --light-primary   :  rgb(150, 151, 155); 
+    --text-primary    :  #FFFFFF; 
+    --accent          :  #9E9E9E; 
+    --primary-text    :  #212121; 
+    --secondary-text  :  #757575; 
+    --divider         :  #292429; 
+    --editor-background: #2C2C2A
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--editor-background);
+}
+
+.pull-right {
+    float: right;
+}

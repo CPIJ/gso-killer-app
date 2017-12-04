@@ -1,0 +1,13 @@
+<div class="container">
+      <div class="editor" ace-editor
+      [(text)]="content" 
+      [mode]="'java'" 
+      [theme]="'monokai'"
+      [options]="options"
+      [readOnly]="false"
+      [autoUpdateContent]="true" 
+      [durationBeforeCallback]="1000"
+      (textChanged)="onChange($event)"
+      style="height: 100%; width:100%; overflow: auto;">
+    </div>
+</div>
