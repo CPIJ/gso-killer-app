@@ -4,11 +4,11 @@
             <a class="navbar-brand" href="#">SynCoder</a>
         </div>
         <div class="col-md-6">
-            <h2 #stuff (keyup.enter)="onChange(stuff)" class="title" contenteditable="true">Projectnaam</h2>
+            <h2 #stuff (keyup.enter)="onChange(stuff)" class="title" contenteditable="true">{{ projectName }}</h2>
         </div>
         <div class="col-md-5">
             <div class="row navbar-toggler-right right">
-                <button id="compile-btn" class="btn btn-primary">Compile</button>
+                <button (click)="compile()" id="compile-btn" class="btn btn-primary">Compile</button>
                 <button *ngFor="let user of users" [style.background]="calcColor(user)" type="button" class="btn btn-default btn-circle btn-xl person">{{shortenName(user)}}</button>
                 <button [style.background]="calcColor(loggedInUser)" class="btn btn-default btn-circle btn-xl">{{shortenName(loggedInUser)}}</button>
             </div>

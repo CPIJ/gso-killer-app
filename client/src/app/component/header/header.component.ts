@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import TextUtillity from '../../utillity/text.utillity';
 import * as $ from 'jquery';
+import Event from '../../utillity/Event';
 
 @Component({
   selector: 'header',
@@ -19,6 +20,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.loggedInUser = 'Casper Pijnenburg';
+    Event.listen("projectNameChanged", (name) => {
+      this.projectName = name;
+    });
+
   }
 
   shortenName(name: string) {
@@ -46,5 +51,9 @@ export class HeaderComponent implements OnInit {
     if ($(test).html() !== this.projectName) {
       this.projectName = $(test).html();
     }
+  }
+
+  compile() {
+    Event.emit('compile')
   }
 }

@@ -1,0 +1,33 @@
+{
+    "host": {
+        "local": {
+            "base": "http://localhost:",
+            "websocketName": "/syncoder",
+            "subscriptions": {
+                "project": {
+                    "onChange": "/topic/project/onchange/",
+                    "onClientCountChange": "/topic/project/onClientCountChange/"
+                },
+                "authentication": {
+                    "afterRegistration": "/topic/project/onClientCountChange/"
+                }
+            },
+            "sends": {
+                "onClosed": "/syncoder/project/onClosed",
+                "onOpened": "/syncoder/project/onOpened",
+                "changeProject": "/syncoder/project/change/"
+            },
+            "apiEndpoints": {
+                "authentication": {
+                    "register": "/authentication/user",
+                    "getAllUsers": "/authentication/user/all"
+                }
+            }
+        }
+    },
+    "ports": {
+        "rmi": 1000,
+        "api": 2000,
+        "websocket": 3000
+    }
+}

@@ -1,13 +1,8 @@
-<div class="container">
-      <div class="editor" ace-editor
-      [(text)]="content" 
-      [mode]="'java'" 
-      [theme]="'monokai'"
-      [options]="options"
-      [readOnly]="false"
-      [autoUpdateContent]="true" 
-      [durationBeforeCallback]="1000"
-      (textChanged)="onChange($event)"
-      style="height: 100%; width:100%; overflow: auto;">
-    </div>
+<div *ngIf="isLoaded" class="container">
+  <ace-editor [(text)]="content" [mode]="'java'" [theme]="'monokai'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
+    [durationBeforeCallback]="0" #editor (keyup)="onChange(editor._text)" style="height: 100%; width:100%; overflow: auto;" class="editor">
+  </ace-editor>
+</div>
+<div *ngIf="!isLoaded" class="container">
+  <p style="color: white; padding-top:1em;">Loading project...</p>
 </div>
