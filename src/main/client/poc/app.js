@@ -7,7 +7,7 @@ $(document).ready(() => {
         return stompClient.send("/syncoder/project/onClosed", {}, JSON.stringify({ clientId: clientId, projectId: projectId }));
     });
 
-    const socket = new SockJS('http://localhost:8082/syncoder');
+    const socket = new SockJS('http://localhost:3000/syncoder');
     let stompClient = Stomp.over(socket);
     // stompClient.debug = (message) => message.startsWith('Whoops!') ? console.log(message) : null;
 
@@ -35,7 +35,7 @@ $(document).ready(() => {
 
 
         $.get({
-            url: "http://localhost:8081/project/all",
+            url: "http://localhost:2000/project/all",
             success: projects => {
                 console.log(projects)
             }
@@ -59,7 +59,7 @@ $(document).ready(() => {
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8081/authentication/user",
+            url: "http://localhost:2000/authentication/user",
             beforeSend: (request) => {
                 request.setRequestHeader("Content-Type", "application/json")
             },
@@ -75,7 +75,7 @@ $(document).ready(() => {
 
     const loadAllUsers = () => {
         $.get({
-            url: "http://localhost:8081/authentication/user/all",
+            url: "http://localhost:2000/authentication/user/all",
             success: (response) => {
                 showAllUsers(response);
             },

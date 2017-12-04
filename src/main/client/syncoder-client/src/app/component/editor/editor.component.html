@@ -1,3 +1,14 @@
-<p>
-  editor works!
-</p>
+<div class="container">
+<div class="editor">
+  <ace-editor #editor id="editor"
+  [(text)]="content" 
+  [mode]="'java'" 
+  [theme]="'eclipse'"
+  [options]="options"
+  [readOnly]="false"
+  [autoUpdateContent]="true" 
+  [durationBeforeCallback]="0"
+  (textChanged)="onChange($event)">
+  </ace-editor>
+</div>
+</div>
