@@ -26,4 +26,10 @@ export class AuthenticationService {
       .map(response => response.json())
       .catch(err => Observable.throw(err));
   }
+
+  forgotPassword(email: string): Observable<string> {
+    return this.http.get("http://localhost:2000/authentication/forgotPassword?email=" + email)
+      .map(r => r.text())
+      .catch(err => Observable.throw(err))
+  }
 }

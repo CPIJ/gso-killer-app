@@ -1,5 +1,6 @@
 package web.api.controller;
 
+import org.springframework.web.bind.annotation.*;
 import web.model.request.LoginRequest;
 import web.model.request.SignUpRequest;
 import web.model.response.LoginResponse;
@@ -10,10 +11,6 @@ import rmi.fontys.IRemotePublisherForListener;
 import data.service.AuthenticationServiceFactory;
 import data.service.IAuthenticationService;
 import data.service.RegistryFactory;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import shared.event.Event;
 import data.model.User;
 import rmi.Config;
@@ -22,6 +19,7 @@ import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/authentication")
@@ -68,6 +66,27 @@ public class AuthenticationController extends UnicastRemoteObject implements IRe
         }
 
         return false;
+    }
+
+    @RequestMapping(value = "/forgotPassword", method = RequestMethod.GET)
+    public String forgotPassword(@RequestParam String email) {
+        String password = "";
+
+        try {
+            Optional<User> optional = getAllUsers()
+                    .stream()
+                    .filter(u -> u.getEmail().equals(email)).findFirst();
+
+            if (optional.isPresent()) {
+                User user = optional.get();
+                password = user.getPassword();
+            }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return password;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST, consumes = "application/json")

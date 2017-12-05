@@ -11,8 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  email: String;
-  password: String;
+  email: string;
+  password: string;
   returnUrl: string;
 
   constructor(private authService: AuthenticationService, private route: ActivatedRoute, private router: Router) { }
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         Context.currentUser = response.user;
 
         if (this.returnUrl) {
-          this.router.navigateByUrl(this.returnUrl);
+          this.router.navigateByUrl(this.returnUrl);  
         } else {
           this.router.navigate(['project-creation']);
         }
@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword() {
-    alert("Hier is je wachtwoord: ")
+    this.authService.forgotPassword(this.email).subscribe(response => {
+      alert(`Dit is je wachtwoord: ${response}`)
+    });
   }
 }
