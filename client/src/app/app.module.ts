@@ -11,9 +11,15 @@ import { Http, HttpModule } from '@angular/http';
 import { StompService } from 'ng2-stomp-service';
 import { RouterModule, Routes } from '@angular/router';
 import { EditorpageComponent } from './component/editorpage/editorpage.component';
+import { LoginComponent } from './component/login/login.component';
+import { ProjectCreationComponent } from './component/project-creation/project-creation.component';
+import { RegisterComponent } from './component/register/register.component';
 
 const routes: Routes = [
-  { component: EditorpageComponent, path: 'editor' }
+  { component: EditorpageComponent, path: 'editor' },
+  { component: LoginComponent, path: '' },
+  { component: ProjectCreationComponent, path: 'project-creation' },
+  { component: RegisterComponent, path: 'register' }
 ] 
 
 @NgModule({
@@ -21,7 +27,10 @@ const routes: Routes = [
     AppComponent,
     HeaderComponent,
     EditorComponent,
-    EditorpageComponent
+    EditorpageComponent,
+    LoginComponent,
+    ProjectCreationComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
