@@ -1,3 +1,17 @@
-<p>
-  register works!
-</p>
+<div class="container">
+  <div class="card card-container">
+    <h2 id="profile-name" style="text-align:center; font-weight: bold; padding-bottom: 3vh;">Registeren</h2>
+    <form class="form-signin">
+      <span id="reauth-email" class="reauth-email"></span>
+      <input [(ngModel)]="user.email" type="email" id="inputEmail" name="email" class="form-control" placeholder="E-mailadres" required autofocus>
+      <input [(ngModel)]="user.username" type="text" id="inputUsername" name="username" class="form-control" placeholder="Gebruikersnaam" required autofocus>
+      <input [(ngModel)]="user.password" type="password" id="inputPassword" name="password" class="form-control" placeholder="Wachtwoord"
+        required>
+      <br>
+      <button class="btn btn-lg btn-primary btn-block btn-signin" (click)="register()" type="submit">Registeren</button>
+    </form>
+    <a [routerLink]="['']" href="#" class="forgot-password">
+      Terug naar inloggen
+    </a>
+  </div>
+</div>
