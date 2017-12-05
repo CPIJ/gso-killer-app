@@ -43,4 +43,14 @@ public class RmiAuthenticationService extends UnicastRemoteObject implements IAu
     public List<User> getAllUsers() throws RemoteException {
         return repository.getAllUsers();
     }
+
+    @Override
+    public boolean isAuthorized(User user) {
+        return repository
+                .getAllUsers()
+                .stream()
+                .anyMatch(u ->
+                        u.getUsername().equals(user.getUsername())
+                        && u.getPassword().equals(user.getPassword()));
+    }
 }

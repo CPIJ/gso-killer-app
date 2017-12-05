@@ -6,7 +6,7 @@ import { RegisterComponent } from "./component/register/register.component";
 import { AuthorizationGuard } from "./security/authorization-guard";
 
 export const routes: Routes = [
-    { component: EditorpageComponent,  path: 'editor' },
+    { component: EditorpageComponent,  path: 'editor', canActivate: [AuthorizationGuard] },
     { component: ProjectCreationComponent, path: 'project-creation', canActivate: [AuthorizationGuard] },
     { component: LoginComponent, path: '' },
     { component: RegisterComponent, path: 'register' }

@@ -1,7 +1,5 @@
 package data.model;
 
-import org.joda.time.DateTime;
-
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -10,13 +8,9 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String email;
-    private DateTime registerDate;
 
-    public User(String username, String password, String email, DateTime registerDate) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.registerDate = registerDate;
+    public User() {
+
     }
 
     @Override
@@ -29,8 +23,6 @@ public class User implements Serializable {
                 .append(email)
                 .append(", ")
                 .append(email)
-                .append(", ")
-                .append(registerDate)
                 .toString();
     }
 
@@ -48,8 +40,21 @@ public class User implements Serializable {
         return email;
     }
 
-    public DateTime getRegisterDate() {
-        return registerDate;
+    public void setId(long id) {
+        this.id = id;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     //endregion
 }

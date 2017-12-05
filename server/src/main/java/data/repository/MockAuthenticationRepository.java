@@ -1,6 +1,5 @@
 package data.repository;
 
-import org.joda.time.DateTime;
 import data.model.User;
 
 import java.util.*;
@@ -11,9 +10,20 @@ public class MockAuthenticationRepository implements IAuthenticationRepository {
     private Set<User> oldUsers = new HashSet<>();
 
     public MockAuthenticationRepository() {
+
+        User casper = new User();
+        User admin = new User();
+
+        casper.setUsername("casper");
+        casper.setPassword("test");
+        casper.setEmail("test");
+
+        admin.setUsername("admin");
+        admin.setPassword("admin");
+        admin.setEmail("admin@admin.nl");
+
         users.addAll(Arrays.asList(
-                new User("admin", "admin", "admin@admin.nl", new DateTime("2012-06-08")),
-                new User("casper", "test", "casper@syncoder.nl", new DateTime("2012-06-08"))
+                admin, casper
         ));
     }
 

@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { User } from '../model/user';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { LoginResponse } from '../model/login-response';
 
 @Injectable()
@@ -13,14 +14,16 @@ export class AuthenticationService {
 
   login(email: String, password: String): Observable<LoginResponse> {
     return this.http.post("http://localhost:2000/authentication/", { username: email, password: password })
-    .map(u => u.json())
-    .catch(err => {
-      alert(err.message)
-      return null;
-    })
+      .map(u => u.json())
+      .catch(err => {
+        alert(err.message)
+        return null;
+      })
   }
 
-  isAuthorized(user: User): boolean {
-    return true;
+  isAuthorized(user: User): Observable<boolean> {
+    return this.http.post("http://localhost:2000/authentication/isAuthorized/", { username: user.username, email: user.email, password: user.password })
+      .map(response => response.json())
+      .catch(err => Observable.throw(err));
   }
 }

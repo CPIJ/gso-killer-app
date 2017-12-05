@@ -20,14 +20,7 @@ import { User } from './model/user';
 import Context from './utillity/Context';
 import { routes } from './app.routes';
 import { AuthorizationGuard } from './security/authorization-guard';
-
-
-
-//tmp
-const user = new User();
-user.username = "Casper Pijnenburg";
-
-Context.currentUser = user;
+import { AuthenticationService } from './service/authentication.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +43,8 @@ Context.currentUser = user;
   ],
   providers: [
     StompService,
-    AuthorizationGuard
+    AuthorizationGuard,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

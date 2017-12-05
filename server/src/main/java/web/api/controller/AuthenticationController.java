@@ -59,6 +59,17 @@ public class AuthenticationController extends UnicastRemoteObject implements IRe
         return LoginResponse.somethingWentWrong();
     }
 
+    @RequestMapping(value = "/isAuthorized", method = RequestMethod.POST, consumes = "application/json")
+    public boolean isAuthorized(@RequestBody User user) {
+        try {
+            return authenticationService.isAuthorized(user);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     @RequestMapping(value = "/user", method = RequestMethod.POST, consumes = "application/json")
     public Response signUp(@RequestBody SignUpRequest request) {
         try {
@@ -69,7 +80,10 @@ public class AuthenticationController extends UnicastRemoteObject implements IRe
             e.printStackTrace();
         }
 
-        User user = new User(request.getUsername(), request.getPassword(), request.getEmail(), request.getDate());
+        User user = new User();
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setUsername(request.getUsername());
 
         try {
             if (authenticationService.Register(user)) {
