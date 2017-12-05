@@ -18,13 +18,10 @@ import { FormsModule } from '@angular/forms';
 import { ProjectTemplateComponent } from './component/project-template/project-template.component';
 import { User } from './model/user';
 import Context from './utillity/Context';
+import { routes } from './app.routes';
+import { AuthorizationGuard } from './security/authorization-guard';
 
-const routes: Routes = [
-  { component: EditorpageComponent,  path: 'editor' },
-  { component: ProjectCreationComponent, path: 'project-creation' },
-  { component: LoginComponent, path: '' },
-  { component: RegisterComponent, path: 'register' }
-]
+
 
 //tmp
 const user = new User();
@@ -53,6 +50,7 @@ Context.currentUser = user;
   ],
   providers: [
     StompService,
+    AuthorizationGuard
   ],
   bootstrap: [AppComponent]
 })

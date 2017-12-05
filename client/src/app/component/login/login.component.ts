@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log('hi')
     this.authService.login(this.email, this.password).subscribe((response) => {
       if (response.hasError) {
         alert(response.message)

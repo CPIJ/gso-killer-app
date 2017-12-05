@@ -19,4 +19,8 @@ export class AuthenticationService {
       return null;
     })
   }
+
+  isAuthorized(user: User): boolean {
+    return true;
+  }
 }
