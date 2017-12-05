@@ -1,0 +1,24 @@
+.page {
+    height: 23vh;
+    background-color: white;
+    width: 100%;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.content {
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.6em;
+    padding: 1em 1em 1em 1em;
+    height: 100%;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+}
+
+.click:hover {
+    border: 1px solid var(--light-primary);
+    cursor: pointer;
+}

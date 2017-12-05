@@ -4,6 +4,6 @@
 
 .editor {
     font-size: 0.9em;
-    font-family: "Roboto Mono" !important;
+    font-family: "Roboto Mono", monospace;
 }
 

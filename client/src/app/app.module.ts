@@ -15,13 +15,22 @@ import { ProjectCreationComponent } from './component/project-creation/project-c
 import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ProjectTemplateComponent } from './component/project-template/project-template.component';
+import { User } from './model/user';
+import Context from './utillity/Context';
 
 const routes: Routes = [
-  { component: EditorpageComponent, path: 'editor' },
+  { component: EditorpageComponent,  path: 'editor' },
   { component: ProjectCreationComponent, path: 'project-creation' },
   { component: LoginComponent, path: '' },
   { component: RegisterComponent, path: 'register' }
 ]
+
+//tmp
+const user = new User();
+user.username = "Casper Pijnenburg";
+
+Context.currentUser = user;
 
 @NgModule({
   declarations: [
@@ -31,7 +40,8 @@ const routes: Routes = [
     EditorpageComponent,
     ProjectCreationComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProjectTemplateComponent
   ],
   imports: [
     BrowserModule,

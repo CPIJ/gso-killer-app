@@ -1,0 +1,15 @@
+.well {
+    height: fit-content;
+    background-color: lightgrey;
+}
+
+.page-container {
+    padding-top: 3.5vh;
+    padding-bottom: 2.5vh;
+}
+
+.page {
+    width: 170px;
+    margin-left: 1vw;
+    margin-bottom: 1vh;
+}

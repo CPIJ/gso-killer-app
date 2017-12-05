@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import TextUtillity from '../../utillity/text.utillity';
 import * as $ from 'jquery';
 import Event from '../../utillity/Event';
+import Context from '../../utillity/Context'
+import { User } from '../../model/user';
 
 @Component({
   selector: 'header',
@@ -11,17 +13,21 @@ import Event from '../../utillity/Event';
 })
 export class HeaderComponent implements OnInit {
 
-  loggedInUser: string;
+  @Input() isInProject: boolean;
+
+  loggedInUser: User;
   projectName: string;
   previousProjectName: string;
-  users: string[];
+  users: String[];
 
   constructor() { }
 
   ngOnInit() {
     Event.listen("projectNameChanged", name => this.projectName = name);
     Event.listen("connectedClientsChanged", clients => this.users = clients.filter(c => c.username !== this.loggedInUser).map(c => c.username));
-    Event.listen("userChanged", user => this.loggedInUser = user);
+    this.isInProject = true;
+    this.loggedInUser = Context.currentUser;
+    Event.emit("headerReady");
   }
 
   shortenName(name: string) {

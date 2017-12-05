@@ -6,6 +6,7 @@ import { AceEditorComponent } from 'ng2-ace-editor';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Event from '../../utillity/Event';
 import TextUtillity from '../../utillity/text.utillity';
+import Context from '../../utillity/Context';
 
 @Component({
   selector: 'editor',
@@ -17,18 +18,32 @@ export class EditorComponent implements OnInit {
 
   isLoaded: boolean;
   config: any;
-  content: String;
+  content: String = "";
   previousContent: String;
   projectId: String = undefined;
-  clientId = TextUtillity.randomId();
+  clientId = Context.currentUser.username;
 
-  constructor(private configurer: ConfigService, private stomp: StompService, private route: ActivatedRoute) { }
+  constructor(private configurer: ConfigService, private stomp: StompService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(param => this.projectId = param['project']);
+    let isTemplate;
+    this.route.queryParams.subscribe(param => {
+      if (param["isTemplate"]) {
+        const projectId = prompt("Vul een projectnaam in.");
+
+        if (projectId === null || projectId === "") {
+          this.router.navigate(['project-creation']);
+        } else {
+          this.projectId = projectId;
+          this.content = param["content"].toString();
+          isTemplate = true;
+        }
+      } else {
+        this.projectId = param['project']
+      }
+    });
 
     Event.emit("projectNameChanged", this.projectId);
-    Event.emit("userChanged", this.clientId)
     Event.listen("compile", () => console.log("Compile", this.content))
 
     this.configurer.get().subscribe(data => {
@@ -45,11 +60,11 @@ export class EditorComponent implements OnInit {
 
       this.stomp.startConnect()
         .then(() => this.configureSubscriptions())
-        .then(() => this.stomp.send("/syncoder/project/onOpened", {
+        .then(() => {this.stomp.send("/syncoder/project/onOpened", {
           clientId: this.clientId,
           projectId: this.projectId,
           username: this.clientId
-        }))
+        })})
         .then(() => this.isLoaded = true)
     });
   }
@@ -60,11 +75,8 @@ export class EditorComponent implements OnInit {
   }
 
   onChange(newContent) {
-    // Niet met model binding werken, zorgt voor een oneindige loop!
-
     if (newContent !== this.previousContent) {
       this.previousContent = this.content;
-      console.log('hi');
 
       this.stomp.send("/syncoder/project/change/" + this.projectId, {
         id: this.projectId,

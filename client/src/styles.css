@@ -1,7 +1,7 @@
 :root {
     --dark-primary    :  rgb(55, 113, 214); 
     --default-primary :  #4484F4; 
-    --light-primary   :  #ffffff; 
+    --light-primary   :  rgb(130, 167, 231); 
     --text-primary    :  rgb(230, 230, 230); 
     --accent          :  #9E9E9E; 
     --primary-text    :  #ffffff; 
@@ -16,7 +16,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Roboto"
+    /* font-family: "Roboto" */
 }
 
 body {
