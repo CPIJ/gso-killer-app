@@ -6,12 +6,12 @@ export default class Event {
         if (Event.listeners === undefined) {
             Event.listeners = new Set<EventHandler>();
         }
-        
+
         Event.listeners.add({ name, callback });
     }
 
 
-    static emit(name, ...data) {
+    static emit(name, data = {}) {
         if (Event.listeners === undefined) {
             Event.listeners = new Set<EventHandler>();
         }

@@ -28,7 +28,7 @@ export class EditorComponent implements OnInit {
     this.route.queryParams.subscribe(param => this.projectId = param['project']);
 
     Event.emit("projectNameChanged", this.projectId);
-
+    Event.emit("userChanged", this.clientId)
     Event.listen("compile", () => console.log("Compile", this.content))
 
     this.configurer.get().subscribe(data => {
@@ -79,6 +79,7 @@ export class EditorComponent implements OnInit {
     this.stomp.subscribe(subscriptions.project.onClientCountChange + this.projectId, (data) => {
       this.content = data.content;
       this.previousContent = data.content;
+      Event.emit('connectedClientsChanged', data.clients)
     })
 
     this.stomp.subscribe(subscriptions.project.onChange + this.projectId, (project) => {

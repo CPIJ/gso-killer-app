@@ -14,20 +14,20 @@ export class HeaderComponent implements OnInit {
   loggedInUser: string;
   projectName: string;
   previousProjectName: string;
-  users = ['Henk de Vries', 'Freek Janssen', 'Bert Vissers'];
+  users: string[];
 
   constructor() { }
 
   ngOnInit() {
-    this.loggedInUser = 'Casper Pijnenburg';
-    Event.listen("projectNameChanged", (name) => {
-      this.projectName = name;
-    });
-
+    Event.listen("projectNameChanged", name => this.projectName = name);
+    Event.listen("connectedClientsChanged", clients => this.users = clients.filter(c => c.username !== this.loggedInUser).map(c => c.username));
+    Event.listen("userChanged", user => this.loggedInUser = user);
   }
 
   shortenName(name: string) {
-    return TextUtillity.shortenName(name);
+    if (name !== undefined) {
+      return TextUtillity.shortenName(name);
+    }
   }
 
   calcColor(name: string) {
