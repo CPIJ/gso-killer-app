@@ -1,5 +1,5 @@
 <div *ngIf="isLoaded" class="container">
-  <ace-editor [(text)]="content" [mode]="'java'" [theme]="'monokai'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
+  <ace-editor [(text)]="content" [mode]="'java'" [theme]="'eclipse'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
     [durationBeforeCallback]="0" #editor (keyup)="onChange(editor._text)" style="height: 100%; width:100%; overflow: auto;" class="editor">
   </ace-editor>
 </div>

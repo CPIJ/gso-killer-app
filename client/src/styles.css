@@ -1,13 +1,13 @@
 :root {
-    --dark-primary    :  rgb(44, 44, 42); 
-    --default-primary :  rgb(65, 65, 62); 
-    --light-primary   :  rgb(150, 151, 155); 
-    --text-primary    :  #FFFFFF; 
+    --dark-primary    :  rgb(55, 113, 214); 
+    --default-primary :  #4484F4; 
+    --light-primary   :  #ffffff; 
+    --text-primary    :  rgb(230, 230, 230); 
     --accent          :  #9E9E9E; 
-    --primary-text    :  #212121; 
-    --secondary-text  :  #757575; 
+    --primary-text    :  #ffffff; 
+    --secondary-text  :  #dbdbdb; 
     --divider         :  #292429; 
-    --editor-background: #2C2C2A
+    --editor-background: rgb(238, 238, 238);
 }
 
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
